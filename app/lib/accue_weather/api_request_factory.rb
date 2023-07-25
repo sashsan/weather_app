@@ -16,7 +16,7 @@ module AccueWeather
 
     def generic_request
       {
-        apiKey: ENV.fetch('ACCUE_WEATHER_API_KEY'),
+        apikey: ENV.fetch('ACCUE_WEATHER_API_KEY'),
         language: 'en',
         details: false
       }
