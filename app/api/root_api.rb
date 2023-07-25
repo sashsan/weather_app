@@ -18,7 +18,8 @@ class RootAPI < Grape::API
   add_swagger_documentation \
     host: ENV.fetch('SWAGGER_HOST'),
     doc_version: '0.0.1',
-    base_path: '/v1/docs',
+    base_path: '',
+    mount_path: '/v1/docs',
     add_base_path: true,
     add_version: true,
     info: {

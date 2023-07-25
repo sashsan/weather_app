@@ -30,8 +30,28 @@ module AccueWeather
 
         hash[key] = v['Temperature']['Metric'] if hash[key].blank?
 
-        hash[key].merge(weather_text: weather_text)
+        hash[key].merge!(weather_text: weather_text)
       end
+
+      hash
+    end
+
+    def max_temp_in_24_hours
+      temperature_24_hours.values.map { |x| x['Value'] }.max
+    end
+
+    def min_temp_in_24_hours
+      temperature_24_hours.values.map { |x| x['Value'] }.min
+    end
+
+    def avg_temp_in_24_hours
+      array = []
+
+      temperature_24_hours.each_value do |x|
+        array << x['Value']
+      end
+
+      (array.instance_eval { reduce(:+) / size.to_f }).round(2)
     end
   end
 end
