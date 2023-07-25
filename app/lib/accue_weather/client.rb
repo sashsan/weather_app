@@ -24,6 +24,16 @@ module AccueWeather
       )
     end
 
+    def current_temperature(uniq_id:)
+      api_request(
+        url_with_path("/currentconditions/v1/#{uniq_id}"),
+        ::AccueWeather::APIRequestFactory
+          .new
+          .current_temperature
+          .to_query
+      )
+    end
+
     private
 
     def api_request(url, params = {})

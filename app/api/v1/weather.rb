@@ -18,11 +18,13 @@ module V1
 
     resource :weather do
       desc 'get current temperature'
+      # rubocop:disable Style/HashSyntax
       get '/current' do
-        # result = client.current_temperature(uniq_id: uniq_id)
+        result = client.current_temperature(uniq_id: uniq_id)
 
-        # present '200'
+        present city: CITY, text: result.weather_text, temperature: result.temperature
       end
+      # rubocop:enable Style/HashSyntax
     end
   end
 end
