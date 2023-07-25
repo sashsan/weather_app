@@ -34,6 +34,16 @@ module AccueWeather
       )
     end
 
+    def historical_temperature(uniq_id:)
+      api_request(
+        url_with_path("/currentconditions/v1/#{uniq_id}/historical/24"),
+        ::AccueWeather::APIRequestFactory
+          .new
+          .historical_temperature
+          .to_query
+      )
+    end
+
     private
 
     def api_request(url, params = {})

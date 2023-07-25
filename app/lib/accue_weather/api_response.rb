@@ -21,5 +21,17 @@ module AccueWeather
     def temperature
       @temperature ||= get_nested_value(response, 'Metric')
     end
+
+    def temperature_24_hours
+      hash = {}
+
+      response[:body].each do |v|
+        key = Time.at(v['EpochTime']).to_datetime
+
+        hash[key] = v['Temperature']['Metric'] if hash[key].blank?
+
+        hash[key].merge(weather_text: weather_text)
+      end
+    end
   end
 end
